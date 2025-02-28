@@ -9,11 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="edge-service" />
         <module name="liftinator (1)" />
+        <module name="base-framework" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="base-framework" options="-parameters" />
       <module name="edge-service" options="-parameters" />
       <module name="liftinator" options="" />
       <module name="liftinator (1)" options="-parameters" />

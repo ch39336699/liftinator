@@ -11,15 +11,19 @@
         <version>3.4.3</version>
         <relativePath/>
     </parent>
+
     <groupId>com.liftinator</groupId>
     <artifactId>liftinator-monorepo</artifactId>
     <version>1.0</version>
     <name>liftinator-monorepo</name>
     <description>liftinator monorepo for elevator exercise</description>
+    <packaging>pom</packaging>
+
     <modules>
+        <module>common-libs</module>
         <module>apps</module>
     </modules>
-    <packaging>pom</packaging>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -144,6 +148,11 @@
             <artifactId>jackson-core</artifactId>
             <version>2.18.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
 
         <!-- Lombok Logging -->
         <dependency>
@@ -184,14 +193,24 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <includeSystemScope>true</includeSystemScope>
-                </configuration>
+                <artifactId>maven-install-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>install-external-non-maven-jar</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <groupId>com.liftinator</groupId>
+                            <artifactId>base-framework</artifactId>
+                            <version>1.0</version>
+                            <file>${project.basedir}/common-libs/base-framework/target/base-framework-1.0.jar</file>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

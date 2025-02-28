@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/apps/capacity-coordinator-service/pom.xml" />
         <option value="$PROJECT_DIR$/apps/edge-service/pom.xml" />
         <option value="$PROJECT_DIR$/apps/pom.xml" />
+        <option value="$PROJECT_DIR$/common-libs/pom.xml" />
       </list>
     </option>
   </component>

@@ -29,4 +29,12 @@
         <main_dir>${project.parent.relativePath}/..</main_dir>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.liftinator</groupId>
+            <artifactId>base-framework</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
 </project>
