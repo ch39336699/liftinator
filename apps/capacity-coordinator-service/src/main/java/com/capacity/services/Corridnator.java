@@ -1,9 +1,9 @@
 package com.capacity.services;
 
 //import com.capacity.model.ElevatorResponse;
+import com.common.model.ElevatorRequest;
 import com.common.model.ElevatorResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.aop.target.CommonsPool2TargetSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Service
@@ -29,7 +28,7 @@ public class Corridnator {
     public List<ElevatorState> _available = Collections.synchronizedList(new ArrayList<ElevatorState>());
 
 
-    public ElevatorResponse processRequest() {
+    public ElevatorResponse processRequest(ElevatorRequest request) {
         ElevatorResponse response = new ElevatorResponse();
         try {
 //            if (messagePayLoad != null) {
