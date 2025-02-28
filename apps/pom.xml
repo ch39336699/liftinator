@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Project: liftinator-monorepo
+  ~ File: pom.xml
+  ~ Author: Chris Harper
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.liftinator</groupId>
+        <artifactId>liftinator-monorepo</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <artifactId>apps</artifactId>
+    <packaging>pom</packaging>
+    <name>apps</name>
+
+    <modules>
+        <module>edge-service</module>
+        <module>capacity-coordinator-service</module>
+    </modules>
+
+    <properties>
+        <main_dir>${project.parent.relativePath}/..</main_dir>
+    </properties>
+
+</project>

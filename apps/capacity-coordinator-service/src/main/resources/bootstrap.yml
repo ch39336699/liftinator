@@ -1,0 +1,36 @@
+#set the cloud config url using pcf environment variables
+spring:
+  application:
+    name: capactiy-coordinator-service
+info:
+  application_kit_version: 1.0
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: release
+
+---
+spring:
+  config:
+    activate:
+      on-profile: volume
+
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+

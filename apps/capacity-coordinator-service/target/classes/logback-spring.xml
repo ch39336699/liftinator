@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- This will include a console appender and file appender.
+         We don't want that if we are using JSON.
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+     -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <springProfile name="local, ci">
+        <logger name="hello" level="info" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="!local">
+        <logger name="hello" level="info" additivity="false">
+            <appender-ref ref="JSON"/>
+        </logger>
+
+        <root level="info">
+            <appender-ref ref="JSON"/>
+        </root>
+    </springProfile>
+
+</configuration>
