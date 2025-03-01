@@ -22,7 +22,7 @@ public class ElevatorState {
     public int currentFloor = 0;
     public int furthestFloor;
     public int currentDirection = 1;
-    public int maxWeight = 500;
+    public int maxWeight = 800;
     public int occupantsCumulativeWeight;
     public int topFloor = 10;
     public ArrayList<Occupant> occupants = new ArrayList<Occupant>(); // Create an ArrayList object
@@ -49,7 +49,7 @@ public class ElevatorState {
             }
             log.info("ElevatorState : {} ", kv("STATUS", data));
         } catch (Exception ex) {
-            throw ex;
+            log.error("ElevatorState.addOccupant(): Exception: {}", ExceptionUtils.getStackTrace(ex));
         } finally {
 
         }
@@ -97,7 +97,7 @@ public class ElevatorState {
             }
             log.info("ElevatorState : {} ", kv("STATUS", data));
         } catch (Exception ex) {
-            log.error("Exception: {}", ExceptionUtils.getStackTrace(ex));
+            log.error("ElevatorState.update(): Exception: {}", ExceptionUtils.getStackTrace(ex));
         } finally {
 
         }

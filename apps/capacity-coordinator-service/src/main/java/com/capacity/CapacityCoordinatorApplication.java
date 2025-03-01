@@ -11,9 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @EnableCaching
 public class CapacityCoordinatorApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(CapacityCoordinatorApplication.class, args);
     }
-
 }

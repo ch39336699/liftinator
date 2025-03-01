@@ -1,0 +1,44 @@
+version: '2.1'
+services:
+  capacity-coordinator-service:
+    image: ch39336699/capacity-coordinator-service
+    environment:
+      - LOGGING_FILE=/logs/capacity-coordinator-service.log
+    ports:
+      - "8082:8082"
+    volumes:
+      - log_volume:/logs
+  edge-service:
+    image: ch39336699/edge-service
+    environment:
+      - LOGGING_FILE=/logs/edge-service.log
+    ports:
+      - "8081:8081"
+    volumes:
+      - log_volume:/logs
+  splunk:
+    image: splunk/splunk
+    hostname: splunk
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_USER=root
+      - SPLUNK_ENABLE_LISTEN=9997
+      - SPLUNK_PASSWORD=password
+    ports:
+      - "8000:8000"
+  splunkforwarder:
+    image: splunk/universalforwarder:8.0
+    hostname: splunkforwarder
+    environment:
+      - SPLUNK_START_ARGS=--accept-license --answer-yes
+      - SPLUNK_STANDALONE_URL=splunk:9997
+      - SPLUNK_USER=root
+      - SPLUNK_ADD=monitor /logs
+      - SPLUNK_PASSWORD=password
+    restart: always
+    depends_on:
+      - splunk
+    volumes:
+      - log_volume:/logs
+volumes:
+  log_volume:

@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,8 @@ public class ElevatorRequests {
 
     @Autowired
     APIProcessor pocessor;
+
+    Logger logger= LoggerFactory.getLogger(ElevatorRequests.class);
 
     @PostMapping(
             value = "/elevatorAction",
@@ -47,12 +51,13 @@ public class ElevatorRequests {
                 data.put("currentFloor", request.body.currentFloor);
                 data.put("direction", request.body.direction);
                 data.put("numEntering", request.body.occupantsEntering.size());
-                log.info("ElevatorRequests HEADER: {} ", request.getHdr().toString(), kv("BODY", data));
+                logger.info("ElevatorRequests HEADER: {} ", request.getHdr().toString(), kv("BODY", data));
+
             } else {
-                log.warn("ElevatorRequests.printRequest(), Request is NULL");
+                logger.warn("ElevatorRequests.printRequest(), Request is NULL");
             }
         } catch (Exception ex) {
-            log.error("ElevatorRequests.printRequest(), Exception: {}", ExceptionUtils.getStackTrace(ex));
+            logger.error("ElevatorRequests.printRequest(), Exception: {}", ExceptionUtils.getStackTrace(ex));
         }
     }
 

@@ -14,11 +14,13 @@ public class Interval5MinTimer extends IntervalTimerImplBase {
     @Autowired
     Corridnator corridnator;
 
-    @Scheduled(fixedDelay = 3000) // Execute every 3 seconds to simulate moving between floors
+    // Execute every 3 seconds to simulate moving between floors.
+    //Run update on each active elevator to update state.
+    @Scheduled(fixedDelay = 3000)
     public void job() {
-        if(corridnator._inUse.size() > 0) {
-            for (int count = 0; count < corridnator._inUse.size(); count++) {
-                    corridnator._inUse.get(count).update();
+        if(corridnator.elevatorsInUse.size() > 0) {
+            for (int count = 0; count < corridnator.elevatorsInUse.size(); count++) {
+                    corridnator.elevatorsInUse.get(count).update();
             }
         }
     }
