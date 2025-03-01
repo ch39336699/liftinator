@@ -19,10 +19,6 @@ public class Interval5MinTimer extends IntervalTimerImplBase {
 
     private static final long INTERVAL = 1000 * 60 * 2; // 5 min
 
-
-    @Value("${rules24Hours : ProcessXLTExpirationTimer}")
-    private String[] rules;
-
    // @PostConstruct
     public void setup() {
     }

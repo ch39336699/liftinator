@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
+
 
 @Slf4j
 @Getter
@@ -19,17 +21,12 @@ public class ElevatorRequest {
         @ApiModelProperty(notes = "Current Floor")
         public int currentFloor;
 
-        @ApiModelProperty(notes = "Number of occupants entering")
-        public int numEntering;
-
-        @ApiModelProperty(notes = "Number of occupants exiting")
-        public int numExiting;
-
         @ApiModelProperty(notes = "Elevator Direction of occupants entering(up/down)")
         public int direction;
 
-        @ApiModelProperty(notes = "Secure occupants count")
-        public int secureCount;
+        @ApiModelProperty(notes = "Number of occupants entering the elevator")
+        public ArrayList<Occupant> occupantsEntering = new ArrayList<Occupant>();
+
     }
 
 }

@@ -21,6 +21,7 @@ public class ElevatorRequests {
 
     @Autowired
     APIProcessor pocessor;
+
     @PostMapping(
             value = "/elevatorAction",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
@@ -42,19 +43,10 @@ public class ElevatorRequests {
     private void printRequest(ElevatorRequest request) {
         JSONObject data = new JSONObject();
         try {
-            if ((request != null) && (request.body!= null)) {
-                data.put("direction", request.body.currentFloor);
-                if(request.body.numEntering > 0) {
-                    data.put("numEntering", request.body.numEntering);
-                    data.put("direction", request.body.direction);
-                    if(request.body.secureCount > 0)
-                    {
-                        data.put("direction", request.body.secureCount);
-                    }
-                }
-                if(request.body.numExiting > 0) {
-                    data.put("numExiting", request.body.numExiting);
-                }
+            if ((request != null) && (request.body != null)) {
+                data.put("currentFloor", request.body.currentFloor);
+                data.put("direction", request.body.direction);
+                data.put("numEntering", request.body.occupantsEntering.size());
                 log.info("ElevatorRequests HEADER: {} ", request.getHdr().toString(), kv("BODY", data));
             } else {
                 log.warn("ElevatorRequests.printRequest(), Request is NULL");
