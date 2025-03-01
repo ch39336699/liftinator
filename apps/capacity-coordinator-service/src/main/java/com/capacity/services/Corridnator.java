@@ -40,19 +40,21 @@ public class Corridnator {
                             }
                         }
                     } else {
-                        // Elevators are in flight. So check location/capacity of running elevators compared to
-                        // new occupants waiting.
+                        for (int count = 0; count < _inUse.size(); count++) {
+                            if ((_inUse.get(count).currentFloor == request.body.currentFloor) && (_inUse.get(count).currentDirection == request.body.direction)) {
+                                for (Occupant occupant : request.body.occupantsEntering) {
+                                    _inUse.get(count).addOccupant(occupant);
+                                }
+                            }
+                        }
                     }
                 } catch (Exception ex) {
-                   // log.error("ReceiverBase.receiveMessage(), Error when getting BaseMDB from pool for queue {}. Pool Active: {}, Pool Max: {}, Exception:", queueName, this._available.size(), this.rulesProcMaxSize, ex);
-                    throw new RuntimeException("ReceiverBase(), Error when getting BaseMDB from pool");
+                    throw new RuntimeException("Corridnator(), Error when getting ElevatorState from pool");
                 }
             } else {
                // log.error("ReceiverBase.receiveMessage(), messagePayLoad is null for queue {}", queueName);
             }
         } catch (RuntimeException rtex) {
-            //Catch and throw back to JMS to put messages back on the queue.
-           // log.warn("ReceiverBase.receiveMessage(), Rolling message back to JMS queue: {}. RuntimeException:", queueName, ExceptionUtils.getStackTrace(rtex));
             throw rtex;
         } finally {
 

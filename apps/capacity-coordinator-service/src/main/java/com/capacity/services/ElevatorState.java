@@ -19,32 +19,35 @@ import static net.logstash.logback.argument.StructuredArguments.kv;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class ElevatorState {
     public boolean inUse;
-    public boolean stopped;
-    public int currentFloor = -1;
+    public int currentFloor = 0;
     public int furthestFloor;
-    public int currentDirection = -1;
-    public int maxWnt;
+    public int currentDirection = 1;
+    public int maxWeight = 500;
+    public int occupantsCumulativeWeight;
     public int topFloor = 10;
     public ArrayList<Occupant> occupants = new ArrayList<Occupant>(); // Create an ArrayList object
 
     public void addOccupant(Occupant occupant) {
+        JSONObject data = new JSONObject();
+        data.put("currentFloor", currentFloor);
+        data.put("occupant_count", occupants.size());
+        data.put("occupants_cumulative_weight", occupantsCumulativeWeight);
         try {
-            occupants.add(occupant);
-            maxWnt = maxWnt + occupant.weight;
-            for (Occupant occupant2 : occupants) {
-                furthestFloor = Math.max(furthestFloor, occupant2.floorSelected);
+            if(occupantsCumulativeWeight + occupant.weight < maxWeight) {
+                occupants.add(occupant);
+                data.put("msg", "Occupant Embarked");
+                data.put("name", occupant.name);
+                data.put("weight", occupant.weight);
+                occupantsCumulativeWeight = occupantsCumulativeWeight + occupant.weight;
+                for (Occupant occupant2 : occupants) {
+                    furthestFloor = Math.max(furthestFloor, occupant2.floorSelected);
+                }
+            } else {
+                data.put("msg", "Maximum weight reached");
+                data.put("name", occupant.name);
+                data.put("weight", occupant.weight);
             }
-        } catch (Exception ex) {
-            throw ex;
-        } finally {
-
-        }
-    }
-
-    public void removeOccupant(Occupant occupant) {
-        try {
-            occupants.remove(occupant);
-            maxWnt = maxWnt - occupant.weight;
+            log.info("ElevatorState : {} ", kv("STATUS", data));
         } catch (Exception ex) {
             throw ex;
         } finally {
@@ -55,6 +58,11 @@ public class ElevatorState {
     public void update() {
         try {
             JSONObject data = new JSONObject();
+            if((occupants.size() == 0) && currentFloor == 0) {
+                //no occupants and at ground floor so nothing to do.
+                currentDirection = 1;
+                return;
+            }
             if (currentDirection == 1) {
                 //Going up
                 if (currentFloor < topFloor) {
@@ -69,11 +77,10 @@ public class ElevatorState {
             for (Iterator<Occupant> it = occupants.iterator(); it.hasNext(); ) {
                 Occupant occupant = it.next();
                 if (occupant.floorSelected == currentFloor) {
-                    if(furthestFloor == occupant.floorSelected)
-                    {
+                    if (furthestFloor == occupant.floorSelected) {
                         currentDirection = 0;
                     }
-                    maxWnt = maxWnt - occupant.weight;
+                    occupantsCumulativeWeight = occupantsCumulativeWeight - occupant.weight;
                     data.put("msg", "Occupant Disembarked");
                     data.put("name", occupant.name);
                     data.put("weight", occupant.weight);
@@ -82,7 +89,8 @@ public class ElevatorState {
             }
             data.put("occupant_count", occupants.size());
             data.put("currentFloor", currentFloor);
-            if(currentDirection == 0) {
+            data.put("occupants_cumulative_weight", occupantsCumulativeWeight);
+            if (currentDirection == 0) {
                 data.put("direction", "Down");
             } else {
                 data.put("direction", "Up");
