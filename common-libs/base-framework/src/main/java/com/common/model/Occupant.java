@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Occupant {
+    public String name;
     public int weight;
     public int floorSelected;
     public int security;

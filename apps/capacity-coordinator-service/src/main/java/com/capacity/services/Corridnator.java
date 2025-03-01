@@ -1,6 +1,5 @@
 package com.capacity.services;
 
-//import com.capacity.model.ElevatorResponse;
 import com.common.model.ElevatorRequest;
 import com.common.model.ElevatorResponse;
 import com.common.model.Occupant;
@@ -24,17 +23,18 @@ public class Corridnator {
 
     int maxSizePoolSize = 4;
 
-    public List<ElevatorState> _available = Collections.synchronizedList(new ArrayList<ElevatorState>());
+    public List<ElevatorState> _inUse = Collections.synchronizedList(new ArrayList<ElevatorState>());
 
     public ElevatorResponse processRequest(ElevatorRequest request) {
         ElevatorResponse response = new ElevatorResponse();
         try {
             if (request.body != null) {
                 try {
-                    if(_available.size() == 0) {
-                        //Grab a ElevatorState from the pool...
-                        synchronized (this._available) {
+                    if(_inUse.size() == 0) {
+                        //Grab an ElevatorState from the pool...
+                        synchronized (this._inUse) {
                             ElevatorState elevator = this.acquireReusable();
+                            elevator.currentDirection = request.body.direction;
                             for (Occupant occupant : request.body.occupantsEntering) {
                                 elevator.addOccupant(occupant);
                             }
@@ -62,28 +62,28 @@ public class Corridnator {
 
     public ElevatorState acquireReusable() throws Exception {
         try {
-            if (_available.size() != 0) {
-                for (int count = 0; count < _available.size(); count++) {
-                    if (!_available.get(count).inUse) {
-                        _available.get(count).inUse = true;
-                        return _available.get(count);
+            if (_inUse.size() != 0) {
+                for (int count = 0; count < _inUse.size(); count++) {
+                    if (!_inUse.get(count).inUse) {
+                        _inUse.get(count).inUse = true;
+                        return _inUse.get(count);
                     }
                 }
 
-                if (_available.size() < maxSizePoolSize) {
+                if (_inUse.size() < maxSizePoolSize) {
                     ElevatorState item = (ElevatorState) pooledTargetSource.getTarget();
                     item.inUse = true;
-                    _available.add(item);
+                    _inUse.add(item);
                     return item;
                 } else {
                     log.warn("Corridnator.releaseReusable(), Max Pool size reached {} ", maxSizePoolSize);
                     throw new Exception("ElevatorState max pool size reached");
                 }
 
-            } else if (_available.size() < maxSizePoolSize) {
+            } else if (_inUse.size() < maxSizePoolSize) {
                 ElevatorState item = (ElevatorState) pooledTargetSource.getTarget();
                 item.inUse = true;
-                _available.add(item);
+                _inUse.add(item);
                 return item;
             }
         } catch (Exception ex) {
