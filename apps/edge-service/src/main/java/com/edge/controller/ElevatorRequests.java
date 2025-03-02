@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+
 import static net.logstash.logback.argument.StructuredArguments.kv;
 
 @RestController
@@ -23,8 +26,6 @@ public class ElevatorRequests {
 
     @Autowired
     APIProcessor pocessor;
-
-    Logger logger= LoggerFactory.getLogger(ElevatorRequests.class);
 
     @PostMapping(
             value = "/elevatorAction",
@@ -36,6 +37,7 @@ public class ElevatorRequests {
         try {
             printRequest(request);
             response = pocessor.processRequest(request);
+
         } catch (Exception ex) {
             log.error("ElevatorRequests.post(), Exception: {}", ExceptionUtils.getStackTrace(ex));
         } finally {
@@ -51,13 +53,12 @@ public class ElevatorRequests {
                 data.put("currentFloor", request.body.currentFloor);
                 data.put("direction", request.body.direction);
                 data.put("numEntering", request.body.occupantsEntering.size());
-                logger.info("ElevatorRequests HEADER: {} ", request.getHdr().toString(), kv("BODY", data));
-
+                log.info("ElevatorRequests.printRequest(),{}",  kv("BODY", data));
             } else {
-                logger.warn("ElevatorRequests.printRequest(), Request is NULL");
+                log.warn("ElevatorRequests.printRequest(), Request is NULL");
             }
         } catch (Exception ex) {
-            logger.error("ElevatorRequests.printRequest(), Exception: {}", ExceptionUtils.getStackTrace(ex));
+            log.error("ElevatorRequests.printRequest(), Exception: {}", ExceptionUtils.getStackTrace(ex));
         }
     }
 

@@ -2,7 +2,6 @@ package com.common.util;
 
 import com.common.model.ElevatorRequest;
 import com.common.model.ElevatorResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +27,7 @@ public class RestService {
             HttpEntity<String> entity = new HttpEntity<String>(json, headers);
             ResponseEntity<String> result = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
         } catch (Exception ex) {
-            log.error("RestService.post(): ---> Exception: {}", ExceptionUtils.getStackTrace(ex));
+            log.error("RestService.post(): Exception: {}", ExceptionUtils.getStackTrace(ex));
         }
         return response;
 

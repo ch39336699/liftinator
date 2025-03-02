@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,20 +25,28 @@ public class ElevatorRequests {
     String status = "Status:";
 
     @PostMapping(
-            value = "/elevatorAction")
-    @ApiOperation(value = "Accepts CDV Reroute Request, processes it and provides new Reroute.")
+            value = "/new",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiOperation(value = "Accepts Elevator Actions.")
     public ElevatorResponse post(@RequestBody ElevatorRequest request) {
-
         ElevatorResponse response = null;
         try {
-            response = corridnator.processRequest(request);
+           // printRequest(request);
+          //  response = pocessor.processRequest(request);
+
         } catch (Exception ex) {
             log.error("ElevatorRequests.post(), Exception: {}", ExceptionUtils.getStackTrace(ex));
         } finally {
 
         }
-        //Send location in response
         return response;
     }
+
+    @GetMapping("/findall")
+    public void getAllBook() {
+        log.info("ElevatorRequests.getAllBook()");
+    }
+
 
 }
