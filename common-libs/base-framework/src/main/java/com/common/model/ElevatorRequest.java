@@ -1,10 +1,10 @@
 package com.common.model;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 
@@ -18,11 +18,6 @@ public class ElevatorRequest {
     public Body body;
 
     public class Body {
-        @ApiModelProperty(notes = "Current Floor")
-        public int currentFloor;
-
-        @ApiModelProperty(notes = "Elevator Direction of occupants entering(up/down)")
-        public int direction;
 
         @ApiModelProperty(notes = "Number of occupants entering the elevator")
         public ArrayList<Occupant> occupantsEntering = new ArrayList<Occupant>();

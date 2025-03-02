@@ -25,15 +25,14 @@ public class ElevatorRequests {
     String status = "Status:";
 
     @PostMapping(
-            value = "/new",
+            value = "/elevatorAction",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(value = "Accepts Elevator Actions.")
     public ElevatorResponse post(@RequestBody ElevatorRequest request) {
         ElevatorResponse response = null;
         try {
-           // printRequest(request);
-          //  response = pocessor.processRequest(request);
+            response = corridnator.processRequest(request);
 
         } catch (Exception ex) {
             log.error("ElevatorRequests.post(), Exception: {}", ExceptionUtils.getStackTrace(ex));

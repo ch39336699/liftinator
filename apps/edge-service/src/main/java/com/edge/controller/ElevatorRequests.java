@@ -50,8 +50,8 @@ public class ElevatorRequests {
         JSONObject data = new JSONObject();
         try {
             if ((request != null) && (request.body != null)) {
-                data.put("currentFloor", request.body.currentFloor);
-                data.put("direction", request.body.direction);
+                //data.put("currentFloor", request.body.currentFloor);
+                //data.put("direction", request.body.direction);
                 data.put("numEntering", request.body.occupantsEntering.size());
                 log.info("ElevatorRequests.printRequest(),{}",  kv("BODY", data));
             } else {

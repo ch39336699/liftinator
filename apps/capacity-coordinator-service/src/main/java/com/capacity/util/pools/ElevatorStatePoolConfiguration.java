@@ -9,7 +9,7 @@ import org.springframework.context.annotation.*;
 @ComponentScan(basePackages = "com.capacity")
 public class ElevatorStatePoolConfiguration {
 
-  @Value("${baseMDB.pool.maxSize: 2}")
+  @Value("${baseMDB.pool.maxSize: 10}")
   private int rulesProcMaxSize;
 
   @Value("${baseMDB.pool.minIdle: 2}")

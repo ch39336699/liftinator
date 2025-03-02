@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <property name="LOG_FILE" value="logs/edge-service.log"/>
+    <property name="LOG_FILE" value="logs/capacity-coordinator-service.log"/>
 
     <springProperty scope="context" name="capacity-coordinator-service" source="spring.application.name"/>
 
