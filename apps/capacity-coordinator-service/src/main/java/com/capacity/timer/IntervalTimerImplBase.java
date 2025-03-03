@@ -4,6 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Component;
 
+/*
+ * Project: liftinator
+ * File: IntervalTimerImplBase.java
+ * Author: Chris Harper
+ * The IntervalTimerImplBase class defines some basic constants and a setup method,
+ * potentially for use as a base class in a larger timer or scheduling system.
+ */
 @Slf4j
 @Component
 public class IntervalTimerImplBase {
@@ -17,6 +24,5 @@ public class IntervalTimerImplBase {
     //@PostConstruct
     public void setup() {
     }
-
 
 }

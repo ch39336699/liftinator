@@ -15,6 +15,16 @@ import java.util.*;
 
 import static net.logstash.logback.argument.StructuredArguments.kv;
 
+
+/*
+ * Project: liftinator
+ * File: Corridnator.java
+ * Author: Chris Harper
+ * The Corridnator class is responsible for managing a set of elevators and their interactions with occupants
+ * who request to use the elevators. It handles the assignment of elevators to occupants based on their current floor
+ * and their destination, ensuring that each elevator operates within its capacity limits.
+ * The class uses a pool of elevator objects and provides methods for handling requests and dispatching elevators.
+ */
 @Slf4j
 @Service
 public class Corridnator {

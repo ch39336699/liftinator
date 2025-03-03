@@ -10,6 +10,14 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+/*
+ * Project: liftinator
+ * File: RestService.java
+ * Author: Chris Harper
+ * The RestService class is designed to send HTTP POST requests to a specified URL.
+ * It uses RestTemplate for making the request, and ObjectMapper to convert an
+ * ElevatorRequest object into a JSON string.
+ */
 @Slf4j
 @Service
 public class RestService {
@@ -30,8 +38,6 @@ public class RestService {
             log.error("RestService.post(): Exception: {}", ExceptionUtils.getStackTrace(ex));
         }
         return response;
-
     }
-
 
 }

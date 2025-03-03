@@ -4,9 +4,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
-import org.springframework.web.server.WebFilter;
+
 import java.util.Arrays;
 import java.util.Collections;
+
+/*
+ * Project: liftinator
+ * File: CorsConfig.java
+ * Author: Chris Harper
+ * The CorsConfig class configures Cross-Origin Resource Sharing (CORS) for your Spring application,
+ * allowing or restricting access to resources based on the origin of the request.
+ * This class defines a CorsWebFilter bean to customize CORS settings for incoming HTTP requests.
+ */
 @Configuration
 public class CorsConfig {
 

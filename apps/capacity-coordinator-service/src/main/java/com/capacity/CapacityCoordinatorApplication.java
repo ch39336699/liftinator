@@ -6,6 +6,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+
+/*
+ * Project: liftinator
+ * File: CapacityCoordinatorApplication.java
+ * Author: Chris Harper
+ * The CapacityCoordinatorApplication is a basic entry point for a Spring Boot application
+ */
 @Slf4j
 @SpringBootApplication
 @EnableScheduling

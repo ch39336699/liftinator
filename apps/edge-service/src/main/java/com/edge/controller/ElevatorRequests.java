@@ -16,6 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static net.logstash.logback.argument.StructuredArguments.kv;
 
+/*
+ * Project: liftinator
+ * File: ElevatorRequests.java
+ * Author: Chris Harper
+ * The ElevatorRequests class is a Spring controller designed to handle HTTP POST requests at the /elevatorAction endpoint.
+ * It processes ElevatorRequest objects, delegates the logic to APIProcessor, and logs the request details.
+ */
 @RestController
 @Slf4j
 public class ElevatorRequests {
@@ -36,9 +43,7 @@ public class ElevatorRequests {
             response = pocessor.processRequest(request);
 
         } catch (Exception ex) {
-            log.error("ElevatorRequests.post(), Exception: {}", ExceptionUtils.getStackTrace(ex));
-        } finally {
-
+            log.error("ElevatorResponse.post(), Exception: {}", ExceptionUtils.getStackTrace(ex));
         }
         return response;
     }
@@ -47,15 +52,13 @@ public class ElevatorRequests {
         JSONObject data = new JSONObject();
         try {
             if ((request != null) && (request.body != null)) {
-                //data.put("currentFloor", request.body.currentFloor);
-                //data.put("direction", request.body.direction);
                 data.put("numEntering", request.body.occupantsEntering.size());
-                log.info("ElevatorRequests.printRequest(),{}",  kv("BODY", data));
+                log.info("ElevatorResponse.printRequest(),{}",  kv("BODY", data));
             } else {
-                log.warn("ElevatorRequests.printRequest(), Request is NULL");
+                log.warn("ElevatorResponse.printRequest(), Request is NULL");
             }
         } catch (Exception ex) {
-            log.error("ElevatorRequests.printRequest(), Exception: {}", ExceptionUtils.getStackTrace(ex));
+            log.error("ElevatorResponse.printRequest(), Exception: {}", ExceptionUtils.getStackTrace(ex));
         }
     }
 

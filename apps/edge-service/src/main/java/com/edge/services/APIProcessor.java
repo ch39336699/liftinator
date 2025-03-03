@@ -11,6 +11,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/*
+ * Project: liftinator
+ * File: APIProcessor.java
+ * Author: Chris Harper
+ * The APIProcessor class is responsible for processing an ElevatorRequest by determining the appropriate URL
+ * (depending on whether the application is running inside a Docker container) and sending the request
+ * to that URL using the RestService
+ */
 @Slf4j
 @Service
 public class APIProcessor {
@@ -29,9 +37,7 @@ public class APIProcessor {
             }
             response = restService.post(url, request);
         } catch (Exception ex) {
-            log.error("RestService.post(): Exception: {}", ExceptionUtils.getStackTrace(ex));
-        } finally {
-
+            log.error("APIProcessor.processRequest(): Exception: {}", ExceptionUtils.getStackTrace(ex));
         }
         return response;
     }

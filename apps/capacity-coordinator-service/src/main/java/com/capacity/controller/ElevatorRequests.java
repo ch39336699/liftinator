@@ -8,21 +8,25 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
+/*
+ * Project: liftinator
+ * File: ElevatorRequests.java
+ * Author: Chris Harper
+ * The ElevatorRequests class is a Spring-based REST controller that exposes an endpoint to accept
+ * and process elevator actions. This class is responsible for receiving ElevatorRequest objects,
+ * delegating the request processing to the Corridnator class, and returning an ElevatorResponse.
+ */
 @RestController
 @Slf4j
 public class ElevatorRequests {
 
     @Autowired
     Corridnator corridnator;
-
-    private final String endpoint = "routeRequest";
-
-    String status = "Status:";
 
     @PostMapping(
             value = "/elevatorAction",
@@ -35,17 +39,9 @@ public class ElevatorRequests {
             response = corridnator.processRequest(request);
 
         } catch (Exception ex) {
-            log.error("ElevatorRequests.post(), Exception: {}", ExceptionUtils.getStackTrace(ex));
-        } finally {
-
+            log.error("ElevatorResponse.post(), Exception: {}", ExceptionUtils.getStackTrace(ex));
         }
         return response;
     }
-
-    @GetMapping("/findall")
-    public void getAllBook() {
-        log.info("ElevatorRequests.getAllBook()");
-    }
-
 
 }

@@ -1,25 +1,9 @@
 spring:
   application:
     name: edge-service
-  config:
-    activate:
-      on-profile: offline
-    import: "optional:configtree:/run/secrets/"
-  data:
-    mongodb:
-      username: microservice
-      password: ${mongodb_user_password}
-      database: renderDB
-  boot:
-    admin:
-      client:
-        enabled: false
-    configuration:
-      bind:
-        ignore-unknown-fields: true
 server:
+  port: 8081
   shutdown: graceful
-# endpoint exposure
 management:
   endpoints:
     web:

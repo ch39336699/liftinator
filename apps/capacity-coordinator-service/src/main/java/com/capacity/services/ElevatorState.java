@@ -13,6 +13,15 @@ import java.util.Iterator;
 
 import static net.logstash.logback.argument.StructuredArguments.kv;
 
+/*
+ * Project: liftinator
+ * File: ElevatorState.java
+ * Author: Chris Harper
+ * The ElevatorState class models an elevator's state, managing its current floor, direction, occupant information,
+ * and the movement between floors. It provides methods to add new occupants and update the elevator's state
+ *  (e.g., moving up/down, picking up and dropping off passengers). The class also logs updates related to the
+ * elevator's actions, such as when an occupant is added or disembarks.
+ */
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @Slf4j
 @Service("com.capacity.services.ElevatorState")
