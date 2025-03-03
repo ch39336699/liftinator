@@ -11,7 +11,7 @@
 
 **Liftinator** is a fun opportunity to design, build, and test an elevator system. The concept seemed simple at first—just a basic elevator that could move between different floors—but I quickly realized it was an engaging exercise that required deep problem-solving, technical knowledge, and innovation. I would suggest starting with the [design document](), which gives an overview of the design and thought process when building the Lifinator. After cloning the repository, there are two ways to run the project.
 
-- **Basic Setup**: Basic setup is basically running the install on the base POM file and then starting the services one at a time. This would get everything up and running fairly quickly.
+- **Basic Setup**: Basic setup is running install on the base **pom.xml** and then starting the services one at a time. This would get everything up and running fairly quickly.
 - **Docker Setup**: An Docker setup is deploying via Docker. An added bonus of running via a Docker container is that you can view the system via the Splunk dashboard.
 
 ### Links <a name="links"></a>
