@@ -2,33 +2,33 @@
 
 
 ### Table of Contents
-- [Tech Stack](#-tech-stack-a-nametech-stacka)
-- [About](#-about-a-nameabouta)
-- [Architecture](#-the-solution-architecture-a-namediagrama)
-- [Links](#-links-a-namelinksa)
-- [Basic Setup](#-basic-setup-a-namebasic-setupa)
-- [Docker Setup](#-docker-setup-a-namedocker-setupa)
-- [Splunk Setup](#-splunk-setup-a-namesplunka)
-- [Testing](#-testing-a-nametesta)
+- [Tech Stack](#-tech-stack)
+- [About](#-about)
+- [Architecture](#-the-solution-architecture)
+- [Links](#-links)
+- [Basic Setup](#-basic-setup)
+- [Docker Setup](#-docker-setup)
+- [Splunk Setup](#-splunk-setup)
+- [Testing](#-testing)
 
 
 
-## 💡 Tech Stack <a name="tech-stack"></a>
+## 💡 Tech Stack
 [![My Skills](https://skillicons.dev/icons?i=spring,java,docker,maven)](https://skillicons.dev)
 
-## 🚀 About <a name="about"></a>
+## 🚀 About
 
 **Liftinator** is a fun opportunity to design, build, and test an elevator system. The concept seemed simple at first—just a basic elevator that could move between different floors—but I quickly realized it was an engaging exercise that required deep problem-solving, technical knowledge, and innovation. I would suggest starting with the [design document](./files/Liftinator_HLD.docx), which gives an overview of the design and thought process when building the Lifinator. After cloning the repository, there are two ways to run the project.
 
 - **Basic Setup**: Basic setup is running install on the base **pom.xml** and then starting the services one at a time. This would get everything up and running fairly quickly.
 - **Docker Setup**: Docker setup is deploying via Docker. An added bonus of running via the Docker container is that you can view the system via a Splunk dashboard.
 
-### 🏛️ The Solution Architecture <a name="diagram"></a>
+### 🏛️ The Solution Architecture
 <p align="center">
   <img src="./files/archDiagram.png" alt="Size Limit CLI" width="738">
 </p>
 
-### 🔎 Links <a name="links"></a>
+### 🔎 Links
 
 | Link                                                                                          | Description                                       |
 |-----------------------------------------------------------------------------------------------|---------------------------------------------------|
@@ -36,7 +36,7 @@
 | [Spunk](http://localhost:8000/)                                                               | Local running Splunk login                        |
 | [Swagger API](http://localhost:8081/swagger-ui/index.html)                                    | Swagger API endpoints                             |
 
-## 📝 Basic Setup <a name="basic-setup"></a>
+## 📝 Basic Setup
 For basic setup:
 
 * Clone the repository.
@@ -48,7 +48,7 @@ For basic setup:
 * Run the spring services **capacity-coordinator-service** and **edge-service** under the **/apps** folder.
 * With the services up you can now use the **http-request_demo.http** file in the base directory to send API commands to run elevator requests and view the log output.
 
-## [![My Skills](https://skillicons.dev/icons?i=docker)](https://skillicons.dev) Docker Setup <a name="docker-setup"></a>
+## [![My Skills](https://skillicons.dev/icons?i=docker)](https://skillicons.dev) Docker Setup
 For docker setup: 
 * Clone the repository.
 * Run the **docker-compose.yaml** in the base directory. This will:
@@ -58,7 +58,7 @@ For docker setup:
        ⭐ **Note:** Splunk server usually takes a few minutues to come up. Please be patient.
 
 
-### 📃 Splunk Setup <a name="splunk"></a>
+### 📃 Splunk Setup
 If you did **docker setup** you should have a splunk sever running and can [login](http://localhost:8000/). (admin/password)
 * As you run the tests (below), within **Splunk** select the **Search** tab, and search for all "*".
 
@@ -78,7 +78,7 @@ If you did **docker setup** you should have a splunk sever running and can [logi
   <img src="./files/splunkTable.png" alt="Size Limit CLI" width="738">
 </p>
 
-### 🧪 Testing <a name="test"></a>
+### 🧪 Testing
 
 **Scenario:** The scenario for the tests is a 15-story building with 6 elevators (A-F), where each elevator can support a maximum load of 800 lbs. 
 The **http-request_demo.http** file (located in the base directory) is used to post API requests specifying how many people are requesting elevators and the details for each person. 
