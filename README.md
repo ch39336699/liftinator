@@ -55,15 +55,25 @@ For docker setup, you must have Docker installed.
     3. Start all four containers. <br>
        ⭐ **Note:** Splunk server usually takes a few minutues to come up. Please be patient.
 * Once Splunk server comes and is running in Docker you can [login](http://localhost:8000/). (admin/password)
-* With the services up you can now use the **http-request_demo.http** file in the base directory to send API commonds to run elevator requests.
+
 
 <p align="center">
   <img src="./files/splunkTable.png" alt="Size Limit CLI" width="738">
 </p>
 
 ### 🧪 Testing <a name="test"></a>
-**Liftinator** is a fun opportunity to design, build, and test an elevator system. The concept seemed simple at first—just a basic elevator that could move between different floors—but I quickly realized it was an engaging exercise that required deep problem-solving, technical knowledge, and innovation. I would suggest starting with the [design document](./files/Liftinator_HLD.docx), which gives an overview of the design and thought process when building the Lifinator. After cloning the repository, there are two ways to run the project.
 
-- **Basic Setup**: Basic setup is running install on the base **pom.xml** and then starting the services one at a time. This would get everything up and running fairly quickly.
-- **Docker Setup**: Docker setup is deploying via Docker. An added bonus of running via the Docker container is that you can view the system via a Splunk dashboard.
+**Scenario:** The scenario for the tests is a 15-story building with 6 elevators (A-F), where each elevator can support a maximum load of 800 lbs. 
+The **http-request_demo.http** file (located in the base directory) is used to post API requests that specify how many people are requesting elevators and the details for each person. 
+For each person waiting, we specify:
+```shell
+  {
+      "currentFloor": 0,  //Floor the person is currenty on
+      "floorSelected": 3, //Floor the need to get to
+      "name": "David",    //Person Name
+      "weight": 145       //Persons weight (which contribues to the load in the elevator)
+  }
 
+```
+
+Once you have the project up and running, either via the **Basic Setup** or the **Docker Setup**, you should then be able to use the **http-request_demo.http** file to run the elevator tests.
