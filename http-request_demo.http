@@ -1,2 +1,84 @@
-### Get Event1 Observer Count - Get Request to get number of observers for a configured event
-GET http://localhost:8081/scenario/observerCount?eventName=SimpleT1TRK::PartDefinitions::SimpleT1trkSV.[1].someEvent
+
+###
+//Test case:
+//Simulate 8 occupants requesting elevators
+//Floor 0:
+//      David going UP to floor 3
+//      Jane going UP to floor 3
+//      Scott going UP to floor 4
+//Floor 3:
+//      Andy going UP to floor 6
+//Floor 4:
+//      Becky going DOWN to floor 0
+//Floor 7:
+//      Marcus going DOWN to floor 3
+//Floor 8:
+//      Tom going to DOWN floor 6
+####
+POST http://localhost:8081/elevatorAction
+Content-Type: application/json
+
+{
+  "hdr": {
+    "empID": "123456"
+  },
+  "body": {
+    "direction": 1,
+    "occupantsEntering":[
+      {
+        "currentFloor": 0,
+        "floorSelected": 3,
+        "name": "David",
+        "weight": 145
+      },
+      {
+        "currentFloor": 0,
+        "floorSelected": 3,
+        "name": "Jane",
+        "weight": 240
+      },
+      {
+        "currentFloor": 7,
+        "floorSelected": 3,
+        "name": "Marcus",
+        "weight": 210
+      },
+      {
+        "currentFloor": 8,
+        "floorSelected": 6,
+        "name": "Tom",
+        "weight": 280
+      },
+      {
+        "currentFloor": 3,
+        "floorSelected": 6,
+        "name": "Andy",
+        "weight": 380
+      },
+      {
+        "currentFloor": 0,
+        "floorSelected": 4,
+        "name": "Scott",
+        "weight": 380
+      },
+      {
+        "currentFloor": 4,
+        "floorSelected": 0,
+        "name": "Becky",
+        "weight": 90
+      }
+    ]
+  }
+}
+
+
+
+###
+GET http://localhost:8080/api/v1/sysMLManager/createGroup?
+    groupName=SimpleScenario&
+    userId=test.user&
+    sessionId=testSession
+
+
+
+
