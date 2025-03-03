@@ -30,15 +30,9 @@ public class ElevatorState {
     public ArrayList<Occupant> occupantsPickUp = new ArrayList<Occupant>();
 
     public void addOccupant(Occupant occupant) {
-        JSONObject data = new JSONObject();
-        data.put("currentFloor", currentFloor);
-        data.put("occupant_count", occupants.size());
-        data.put("occupants_cumulative_weight", occupantsCumulativeWeight);
         try {
             occupants.add(occupant);
-            data.put("msg", "Occupant Embarked");
-            data.put("name", occupant.name);
-            data.put("weight", occupant.weight);
+            JSONObject occupantData = new JSONObject();
             occupantsCumulativeWeight = occupantsCumulativeWeight + occupant.weight;
             for (Occupant occupant2 : occupants) {
                 furthestFloor = Math.max(furthestFloor, occupant2.floorSelected);
@@ -46,7 +40,15 @@ public class ElevatorState {
             if (currentDirection == null) {
                 currentDirection = occupant.direction;
             }
-            log.info("ElevatorState : {} ", kv("STATUS", data));
+
+            JSONObject elevatorData = new JSONObject();
+            String msg = "Added " + occupant.name + " at floor " + currentFloor + " going to floor " + occupant.floorSelected;
+            elevatorData.put("msg", msg);
+            elevatorData.put("elevator", name);
+            elevatorData.put("occupant_count", occupants.size());
+            elevatorData.put("currentFloor", currentFloor);
+            elevatorData.put("occupants_cumulative_weight", occupantsCumulativeWeight);
+            log.info("ElevatorMsg : {} ", kv("STATUS", elevatorData));
         } catch (Exception ex) {
             log.error("ElevatorState.addOccupant(): Exception: {}", ExceptionUtils.getStackTrace(ex));
         } finally {
@@ -55,6 +57,8 @@ public class ElevatorState {
     }
 
     public void update() {
+        StringBuffer disembarkedList = new StringBuffer();
+        int disembarkedcnt =0;
         try {
             JSONObject data = new JSONObject();
             if ((occupants.size() == 0) && (occupantsPickUp.size() == 0)) {
@@ -97,19 +101,27 @@ public class ElevatorState {
                     if (furthestFloor == occupant.floorSelected) {
                         currentDirection = "DOWN";
                     }
+                    disembarkedList.append(occupant.name + " ");
+                    disembarkedcnt++;
                     occupantsCumulativeWeight = occupantsCumulativeWeight - occupant.weight;
-                    data.put("msg", "Occupant Disembarked");
-                    data.put("name", occupant.name);
-                    data.put("weight", occupant.weight);
                     it.remove();
+
                 }
             }
-            data.put("elevator", name);
-            data.put("occupant_count", occupants.size());
-            data.put("currentFloor", currentFloor);
-            data.put("direction", currentDirection);
-            data.put("occupants_cumulative_weight", occupantsCumulativeWeight);
-            log.info("ElevatorState : {} ", kv("STATUS", data));
+            JSONObject elevatorData = new JSONObject();
+            String msg = null;
+            if(disembarkedcnt> 0)
+            {
+                msg = disembarkedcnt + " disembarked at floor " + currentFloor + " " + disembarkedList.toString();
+            } else {
+                msg = "No Stop at floor " + currentFloor + " going " + currentDirection;
+            }
+            elevatorData.put("msg", msg);
+            elevatorData.put("elevator", name);
+            elevatorData.put("occupant_count", occupants.size());
+            elevatorData.put("currentFloor", currentFloor);
+            elevatorData.put("occupants_cumulative_weight", occupantsCumulativeWeight);
+            log.info("ElevatorMsg : {} ", kv("STATUS", elevatorData));
         } catch (Exception ex) {
             log.error("ElevatorState.update(): Exception: {}", ExceptionUtils.getStackTrace(ex));
         } finally {

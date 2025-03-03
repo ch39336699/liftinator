@@ -16,7 +16,7 @@ public class APIProcessor {
     public ElevatorResponse processRequest(ElevatorRequest request) {
         ElevatorResponse response = null;
         try {
-            response = restService.post("http://capacity-coordinator-service:8082/elevatorAction", request);
+            response = restService.post("http://capacity-coordinator-service:8084/elevatorAction", request);
         } catch (Exception ex) {
             log.error("RestService.post(): Exception: {}", ExceptionUtils.getStackTrace(ex));
         } finally {

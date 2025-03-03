@@ -69,7 +69,7 @@ public class Corridnator {
                         data.put("name", occupant.name);
                         data.put("currentFloor", occupant.currentFloor);
                         data.put("floorSelected", occupant.floorSelected);
-                        log.info("ElevatorState : {} ", kv("STATUS", data));
+                        log.info("ErrorMsg : {} ", kv("STATUS", data));
                     }
                     occupantsWaiting.add(occupant);
                 }
@@ -97,13 +97,12 @@ public class Corridnator {
                                 occupantsIterator.remove();
                                 elevator.occupantsPickUp.add(occupant);
                                 JSONObject data = new JSONObject();
-                                data.put("msg", "Elevator Dispatched");
+                                String msg = "Dispatched to pickup " + occupant.name + " on floor " + occupant.currentFloor;
+                                data.put("msg", msg);
                                 data.put("elevator", elevator.name);
                                 data.put("occupant_count", elevator.occupants.size());
                                 data.put("currentFloor", elevator.currentFloor);
-                                data.put("pickup_name", occupant.name);
-                                data.put("pickup_floor", occupant.currentFloor);
-                                log.info("ElevatorState : {} ", kv("STATUS", data));
+                                log.info("ElevatorMsg : {} ", kv("STATUS", data));
                             }
                             elevator.stopped = false;
                             break;
