@@ -2,14 +2,14 @@
 
 
 ### Table of Contents
-- [Tech Stack](#-tech-stack)
-- [About](#-about)
-- [Architecture](#diagram)
-- [Links](#links)
-- [Basic Setup](#-basic-setup)
-- [Docker Setup](#-docker-setup)
-- [Splunk Setup](#-splunk)
-- [Testing](#-test)
+- [Tech Stack](#-tech-stack-a-nametech-stacka)
+- [About](#-about-a-nameabouta)
+- [Architecture](#-the-solution-architecture-a-namediagrama)
+- [Links](#-links-a-namelinksa)
+- [Basic Setup](#-basic-setup-a-namebasic-setupa)
+- [Docker Setup](#-docker-setup-a-namedocker-setupa)
+- [Splunk Setup](#-splunk-setup-a-namesplunka)
+- [Testing](#-testing-a-nametesta)
 
 
 
