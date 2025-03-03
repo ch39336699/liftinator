@@ -60,7 +60,7 @@ For docker setup, you must have Docker installed.
 
 ### 📃 Splunk Setup <a name="splunk"></a>
 If you did **docker setup** you should have a splunk sever running and can [login](http://localhost:8000/). (admin/password)
-* As you run the tests (below), you can go to **Splunk**, open the **Search** tab, and in the search field, search for all "*".
+* As you run the tests (below), within **Splunk** select **Search** tab, and in the search field, search for all "*".
 
 <p align="center">
   <img src="./files/splunkSearch.png" alt="Size Limit CLI" width="738">
