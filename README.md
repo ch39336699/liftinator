@@ -60,7 +60,7 @@ For docker setup, you must have Docker installed.
 
 ### 📃 Splunk Setup <a name="splunk"></a>
 If you did **docker setup** you should have a splunk sever running and can [login](http://localhost:8000/). (admin/password)
-* As you run the tests (below), within **Splunk** select **Search** tab, and in the search field, search for all "*".
+* As you run the tests (below), within **Splunk** select the **Search** tab, and search for all "*".
 
 <p align="center">
   <img src="./files/splunkSearch.png" alt="Size Limit CLI" width="738">
@@ -79,7 +79,8 @@ If you did **docker setup** you should have a splunk sever running and can [logi
 ### 🧪 Testing <a name="test"></a>
 
 **Scenario:** The scenario for the tests is a 15-story building with 6 elevators (A-F), where each elevator can support a maximum load of 800 lbs. 
-The **http-request_demo.http** file (located in the base directory) is used to post API requests that specify how many people are requesting elevators and the details for each person. 
+The **http-request_demo.http** file (located in the base directory) is used to post API requests specifying how many people are requesting elevators and the details for each person. 
+The system should manage all the elevators based on the number of people waiting, their location, and the elevators' capacity.
 For each person waiting, we specify:
 ```shell
   {
