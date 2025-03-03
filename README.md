@@ -63,7 +63,7 @@ If you did **docker setup** you should have a splunk sever running and can [logi
 * As you run the tests (below), within **Splunk** select the **Search** tab, and search for all "*".
 
 <p align="center">
-  <img src="./files/splunkSearch.png" alt="Size Limit CLI" width="738">
+  <img src="files/splunkSearch1.png" alt="Size Limit CLI" width="738">
 </p>
 
 * For a more visual view of the data, you can also use a dashboard by going to **Search** then **Dashboards** and then:
