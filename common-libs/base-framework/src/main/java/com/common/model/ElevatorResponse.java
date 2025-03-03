@@ -1,6 +1,7 @@
 package com.common.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,9 @@ public class ElevatorResponse {
 	@Getter
 	@Setter
 	public static class ResponseBody {
+
+		@ApiModelProperty(notes="Details for errors or warnings.")
+		protected String note;
 
 	}
 }
