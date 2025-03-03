@@ -7,7 +7,7 @@ import org.springframework.context.annotation.*;
 
 /*
  * Project: liftinator
- * File: CapacityCoordinatorApplication.java
+ * File: ElevatorStatePoolConfiguration.java
  * Author: Chris Harper
  * The ElevatorStatePoolConfiguration class configures a connection or object pool
  * for managing instances of the ElevatorState class. The class utilizes Apache Commons Pool (specifically CommonsPool2TargetSource)
