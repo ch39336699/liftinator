@@ -30,7 +30,7 @@ public class ElevatorRequests {
     @Autowired
     APIProcessor pocessor;
 
-    @Operation(summary = "Get all users", description = "Returns a list of users")
+    @Operation(summary = "Elevator Actions", description = "Specify occupants waiting for elevators")
     @PostMapping(
             value = "/elevatorAction",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
@@ -41,7 +41,6 @@ public class ElevatorRequests {
         try {
             printRequest(request);
             response = pocessor.processRequest(request);
-
         } catch (Exception ex) {
             log.error("ElevatorResponse.post(), Exception: {}", ExceptionUtils.getStackTrace(ex));
         }

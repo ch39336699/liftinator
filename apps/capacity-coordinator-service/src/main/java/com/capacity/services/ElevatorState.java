@@ -71,8 +71,6 @@ public class ElevatorState {
             log.info("ElevatorMsg : {} ", kv("STATUS", elevatorData));
         } catch (Exception ex) {
             log.error("ElevatorState.addOccupant(): Exception: {}", ExceptionUtils.getStackTrace(ex));
-        } finally {
-
         }
     }
 
@@ -137,8 +135,6 @@ public class ElevatorState {
             log.info("ElevatorMsg : {} ", kv("STATUS", elevatorData));
         } catch (Exception ex) {
             log.error("ElevatorState.update(): Exception: {}", ExceptionUtils.getStackTrace(ex));
-        } finally {
-
         }
     }
 

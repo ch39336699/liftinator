@@ -18,8 +18,8 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Your API Title")
-                        .description("Your API Description")
+                        .title("Lifinator API")
+                        .description("API For Elevator Requests")
                         .version("1.0.0"));
     }
 }
