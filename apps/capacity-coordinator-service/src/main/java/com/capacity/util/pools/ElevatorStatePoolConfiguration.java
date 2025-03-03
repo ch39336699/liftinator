@@ -31,7 +31,7 @@ public class ElevatorStatePoolConfiguration {
   private int timeBetweenEvictionRuns;
 
   @Bean("ElevatorStateTargetPool")
-  public CommonsPool2TargetSource baseMDBTargetSource() {
+  public CommonsPool2TargetSource ElevatorStateTargetSource() {
     final CommonsPool2TargetSource commonsPoolTargetSource = new CommonsPool2TargetSource();
     commonsPoolTargetSource.setTargetBeanName("com.capacity.services.ElevatorState");
     commonsPoolTargetSource.setTargetClass(ElevatorState.class);
