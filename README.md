@@ -34,10 +34,10 @@
 |-----------------------------------------------------------------------------------------------|---------------------------------------------------|
 | [High Level Design Document](./files/Liftinator_HLD.docx)                                     | High level design document for Liftinator project |
 | [Spunk](http://localhost:8000/)                                                               | Local running Splunk login                        |
-| [Swagger API](http://localhost:8081/swagger-ui/index.html)                                    | Local running swagger for API endpoints           |
+| [Swagger API](http://localhost:8081/swagger-ui/index.html)                                    | Swagger API endpoints                             |
 
 ## 📝 Basic Setup <a name="basic-setup"></a>
-For basic setup, follow these steps:
+For basic setup:
 
 * Clone the repository.
 * Run **maven install** on the **pom.xml** the root directory of the project. This should first build **common-libs** and then build the **capacity-coordinator-service** and **edge-service**. If everything builds correctly you should see:
@@ -49,7 +49,7 @@ For basic setup, follow these steps:
 * With the services up you can now use the **http-request_demo.http** file in the base directory to send API commands to run elevator requests and view the log output.
 
 ## [![My Skills](https://skillicons.dev/icons?i=docker)](https://skillicons.dev) Docker Setup <a name="docker-setup"></a>
-For docker setup, you must have Docker installed. 
+For docker setup: 
 * Clone the repository.
 * Run the **docker-compose.yaml** in the base directory. This will:
     1. Pull the docker images for the **capacity-coordinator-service** and **edge-service**
@@ -66,9 +66,10 @@ If you did **docker setup** you should have a splunk sever running and can [logi
   <img src="./files/splunkSearch.png" alt="Size Limit CLI" width="738">
 </p>
 
-* For a more visual view of the data, you can also use a dashboard by going to **Dashboards** and then:
+* For a more visual view of the data, you can also use a dashboard by going to **Search** then **Dashboards** and then:
     1. Select **Create New Dashboard** (name it whatever you like), then select **Dashboard Studio** and **Grid**.
-    2. Select **Add Chart** (top bar) and choose **Table**, then in **Create Search** for the query enter the contents from **splunkQuery.txt**.
+    2. Select **Add Chart** (top bar) and choose **Table**, then in **Create Search** for the query enter the contents from **splunkQuery.txt**, then **Apply and Close**.
+    3. Default rows visible are 10. To increase, select **Data Display** 
 
 * If all goes well, you should see a table, and when you run the tests below, you should see something similar to:
 

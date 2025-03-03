@@ -34,14 +34,13 @@ public class ElevatorState {
     public int furthestFloor;
     public String currentDirection = "UP";
     public int occupantsCumulativeWeight;
-    public int topFloor = 10;
+    public int topFloor = 15;
     public ArrayList<Occupant> occupants = new ArrayList<Occupant>(); // Create an ArrayList object
     public ArrayList<Occupant> occupantsPickUp = new ArrayList<Occupant>();
 
     public void addOccupant(Occupant occupant) {
         try {
             occupants.add(occupant);
-            JSONObject occupantData = new JSONObject();
             occupantsCumulativeWeight = occupantsCumulativeWeight + occupant.weight;
             for (Occupant occupant2 : occupants) {
                 furthestFloor = Math.max(furthestFloor, occupant2.floorSelected);

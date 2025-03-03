@@ -53,8 +53,6 @@ public class Corridnator {
             names.put(3, "Elevator D");
             names.put(4, "Elevator E");
             names.put(5, "Elevator F");
-            names.put(5, "Elevator G");
-            names.put(5, "Elevator H");
             for (int count = 0; count < 8; count++) {
                 ElevatorState item = (ElevatorState) pooledTargetSource.getTarget();
                 item.name = names.get(count);
