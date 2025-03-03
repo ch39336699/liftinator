@@ -33,8 +33,6 @@ public class Corridnator {
     @Qualifier("ElevatorStateTargetPool")
     CommonsPool2TargetSource pooledTargetSource;
 
-    int maxSizePoolSize = 4;
-
     public List<ElevatorState> elevatorsInUse = Collections.synchronizedList(new ArrayList<ElevatorState>());
     public List<Occupant> occupantsWaiting = Collections.synchronizedList(new ArrayList<Occupant>());
 

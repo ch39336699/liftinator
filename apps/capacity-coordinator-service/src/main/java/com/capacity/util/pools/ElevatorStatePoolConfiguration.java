@@ -18,27 +18,27 @@ import org.springframework.context.annotation.*;
 @ComponentScan(basePackages = "com.capacity")
 public class ElevatorStatePoolConfiguration {
 
-  @Value("${baseMDB.pool.maxSize: 10}")
-  private int rulesProcMaxSize;
+  @Value("${ElevatorStateTargetPool.pool.maxSize:10}")
+  private int maxSize;
 
-  @Value("${baseMDB.pool.minIdle: 2}")
-  private int rulesProcMinIdle;
+  @Value("${ElevatorStateTargetPool.pool.minIdle:2}")
+  private int minIdle;
 
-  @Value("${baseMDB.pool.minEvictableIdleTime: 2}")
-  private int rulesProcMinEvictableIdleTime;
+  @Value("${ElevatorStateTargetPool.pool.minEvictableIdleTime:2}")
+  private int minEvictableIdleTime;
 
-  @Value("${baseMDB.pool.timeBetweenEvictionRuns: 2}")
-  private int rulesProcTimeBetweenEvictionRuns;
+  @Value("${ElevatorStateTargetPool.pool.timeBetweenEvictionRuns:2}")
+  private int timeBetweenEvictionRuns;
 
   @Bean("ElevatorStateTargetPool")
   public CommonsPool2TargetSource baseMDBTargetSource() {
     final CommonsPool2TargetSource commonsPoolTargetSource = new CommonsPool2TargetSource();
     commonsPoolTargetSource.setTargetBeanName("com.capacity.services.ElevatorState");
     commonsPoolTargetSource.setTargetClass(ElevatorState.class);
-    commonsPoolTargetSource.setMaxSize(rulesProcMaxSize);
-    commonsPoolTargetSource.setMinIdle(rulesProcMinIdle);
-    commonsPoolTargetSource.setMinEvictableIdleTimeMillis(rulesProcMinEvictableIdleTime);
-    commonsPoolTargetSource.setTimeBetweenEvictionRunsMillis(rulesProcTimeBetweenEvictionRuns);
+    commonsPoolTargetSource.setMaxSize(maxSize);
+    commonsPoolTargetSource.setMinIdle(minIdle);
+    commonsPoolTargetSource.setMinEvictableIdleTimeMillis(minEvictableIdleTime);
+    commonsPoolTargetSource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRuns);
     return commonsPoolTargetSource;
   }
 
