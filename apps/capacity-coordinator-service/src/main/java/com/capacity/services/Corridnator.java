@@ -62,8 +62,7 @@ public class Corridnator {
         try {
             if (request.body != null) {
                 for (Occupant occupant : request.body.occupantsEntering) {
-                    if(occupant.currentFloor == occupant.floorSelected)
-                    {
+                    if (occupant.currentFloor == occupant.floorSelected) {
                         JSONObject data = new JSONObject();
                         data.put("msg", "Invalid Entry: Current Floor Selected");
                         data.put("name", occupant.name);
@@ -73,14 +72,13 @@ public class Corridnator {
                     }
                     occupantsWaiting.add(occupant);
                 }
-                for (Iterator<ElevatorState> elevatorsIterator = elevatorsInUse.iterator(); elevatorsIterator.hasNext();) {
-                    if(occupantsWaiting.size() == 0)
-                    {
+                for (Iterator<ElevatorState> elevatorsIterator = elevatorsInUse.iterator(); elevatorsIterator.hasNext(); ) {
+                    if (occupantsWaiting.size() == 0) {
                         break;
                     }
                     ElevatorState elevator = elevatorsIterator.next();
                     elevator.stopped = true;
-                    for (Iterator<Occupant> occupantsIterator = occupantsWaiting.iterator(); occupantsIterator.hasNext();)  {
+                    for (Iterator<Occupant> occupantsIterator = occupantsWaiting.iterator(); occupantsIterator.hasNext(); ) {
                         Occupant occupant = occupantsIterator.next();
                         int distance = Math.abs(elevator.currentFloor - occupant.currentFloor);
                         if (occupant.currentFloor > occupant.floorSelected) {
@@ -88,12 +86,11 @@ public class Corridnator {
                         } else {
                             occupant.direction = "UP";
                         }
-                        if ((distance <= minDistance) && (elevator.currentDirection.equals(occupant.direction)) && (elevator.currentFloor == occupant.currentFloor)  &&  (elevator.occupantsCumulativeWeight + occupant.weight < 800)) {
+                        if ((distance <= minDistance) && (elevator.currentDirection.equals(occupant.direction)) && (elevator.currentFloor == occupant.currentFloor) && (elevator.occupantsCumulativeWeight + occupant.weight < 800)) {
                             elevator.addOccupant(occupant);
                             occupantsIterator.remove();
                         } else {
-                            if(elevator.currentFloor == 0 && elevator.occupants.size() == 0)
-                            {
+                            if (elevator.currentFloor == 0 && elevator.occupants.size() == 0) {
                                 occupantsIterator.remove();
                                 elevator.occupantsPickUp.add(occupant);
                                 JSONObject data = new JSONObject();
@@ -106,50 +103,16 @@ public class Corridnator {
                             }
                             elevator.stopped = false;
                             break;
-                           // log.warn("Corridnator.releaseReusable(), Max Pool size reached {} ", maxSizePoolSize);
                         }
                     }
                     elevator.stopped = false;
                 }
-            } else {
-                // log.error("ReceiverBase.receiveMessage(), messagePayLoad is null for queue {}", queueName);
+
             }
         } catch (Exception rtex) {
             throw new RuntimeException("Corridnator(), Error when getting ElevatorState from pool");
-        } finally {
-
         }
         return response;
     }
 
-    public ElevatorState acquireReusable() throws Exception {
-        try {
-            if (elevatorsInUse.size() != 0) {
-                for (int count = 0; count < elevatorsInUse.size(); count++) {
-                    if (!elevatorsInUse.get(count).inUse) {
-                        elevatorsInUse.get(count).inUse = true;
-                        return elevatorsInUse.get(count);
-                    }
-                }
-                if (elevatorsInUse.size() < maxSizePoolSize) {
-                    ElevatorState item = (ElevatorState) pooledTargetSource.getTarget();
-                    item.inUse = true;
-                    elevatorsInUse.add(item);
-                    return item;
-                } else {
-                    log.warn("Corridnator.releaseReusable(), Max Pool size reached {} ", maxSizePoolSize);
-                    throw new Exception("ElevatorState max pool size reached");
-                }
-
-            } else if (elevatorsInUse.size() < maxSizePoolSize) {
-                ElevatorState item = (ElevatorState) pooledTargetSource.getTarget();
-                item.inUse = true;
-                elevatorsInUse.add(item);
-                return item;
-            }
-        } catch (Exception ex) {
-            log.error("Corridnator.acquireReusable(), Exception:", ex);
-        }
-        return null;
-    }
 }

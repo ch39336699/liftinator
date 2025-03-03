@@ -1,4 +1,5 @@
 package com.edge.configuration;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,10 +10,10 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)  // Disable CSRF for stateless APIs
-                .authorizeHttpRequests(auth-> //  auth.requestMatchers("/**").permitAll()
-                        auth.requestMatchers("/elevatorAction/**").permitAll()
+                .authorizeHttpRequests(auth -> //  auth.requestMatchers("/**").permitAll()
+                        auth.requestMatchers("/elevatorAction/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/api/v1/users").permitAll()
                                 .anyRequest().authenticated()
                 ).build();
     }

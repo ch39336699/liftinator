@@ -4,19 +4,15 @@ import com.common.model.ElevatorRequest;
 import com.common.model.ElevatorResponse;
 import com.edge.services.APIProcessor;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.json.simple.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 import static net.logstash.logback.argument.StructuredArguments.kv;
 
@@ -27,6 +23,7 @@ public class ElevatorRequests {
     @Autowired
     APIProcessor pocessor;
 
+    @Operation(summary = "Get all users", description = "Returns a list of users")
     @PostMapping(
             value = "/elevatorAction",
             consumes = {MediaType.APPLICATION_JSON_VALUE},

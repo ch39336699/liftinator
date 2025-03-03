@@ -41,13 +41,24 @@ public class ElevatorState {
                 currentDirection = occupant.direction;
             }
 
+            // Construct the message using StringBuilder for better performance (if needed in a loop)
+            String msg = new StringBuilder("Added ")
+                    .append(occupant.name)
+                    .append(" at floor ")
+                    .append(currentFloor)
+                    .append(" going to floor ")
+                    .append(occupant.floorSelected)
+                    .toString();
+
+            // Create JSONObject and populate it
             JSONObject elevatorData = new JSONObject();
-            String msg = "Added " + occupant.name + " at floor " + currentFloor + " going to floor " + occupant.floorSelected;
             elevatorData.put("msg", msg);
             elevatorData.put("elevator", name);
             elevatorData.put("occupant_count", occupants.size());
             elevatorData.put("currentFloor", currentFloor);
             elevatorData.put("occupants_cumulative_weight", occupantsCumulativeWeight);
+
+            // Log the message with structured data
             log.info("ElevatorMsg : {} ", kv("STATUS", elevatorData));
         } catch (Exception ex) {
             log.error("ElevatorState.addOccupant(): Exception: {}", ExceptionUtils.getStackTrace(ex));
@@ -58,7 +69,7 @@ public class ElevatorState {
 
     public void update() {
         StringBuffer disembarkedList = new StringBuffer();
-        int disembarkedcnt =0;
+        int disembarkedcnt = 0;
         try {
             JSONObject data = new JSONObject();
             if ((occupants.size() == 0) && (occupantsPickUp.size() == 0)) {
@@ -84,34 +95,27 @@ public class ElevatorState {
                     }
                 }
             }
-            if (currentDirection.equals("UP")) {
-                //Going up
-                if (currentFloor < topFloor) {
-                    currentFloor++;
-                }
-            } else {
-                //Going down
-                if (currentFloor > 0) {
-                    currentFloor--;
-                }
+            if (currentDirection.equals("UP") && currentFloor < topFloor) {
+                currentFloor++;
+            } else if (currentDirection.equals("DOWN") && currentFloor > 0) {
+                currentFloor--;
             }
+
             for (Iterator<Occupant> it = occupants.iterator(); it.hasNext(); ) {
                 Occupant occupant = it.next();
                 if (occupant.floorSelected == currentFloor) {
                     if (furthestFloor == occupant.floorSelected) {
                         currentDirection = "DOWN";
                     }
-                    disembarkedList.append(occupant.name + " ");
+                    disembarkedList.append(occupant.name).append(" ");
                     disembarkedcnt++;
-                    occupantsCumulativeWeight = occupantsCumulativeWeight - occupant.weight;
+                    occupantsCumulativeWeight -= occupant.weight;
                     it.remove();
-
                 }
             }
             JSONObject elevatorData = new JSONObject();
             String msg = null;
-            if(disembarkedcnt> 0)
-            {
+            if (disembarkedcnt > 0) {
                 msg = disembarkedcnt + " disembarked at floor " + currentFloor + " " + disembarkedList.toString();
             } else {
                 msg = "No Stop at floor " + currentFloor + " going " + currentDirection;

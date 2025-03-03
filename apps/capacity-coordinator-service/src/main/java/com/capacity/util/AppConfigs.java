@@ -12,7 +12,6 @@ import java.util.Map;
 @Component
 @ConfigurationProperties(prefix = "properties")
 public class AppConfigs {
-
   private Map<String, String> general;
   private Map<String, String> schemas;
   private Map<String, String> environment;

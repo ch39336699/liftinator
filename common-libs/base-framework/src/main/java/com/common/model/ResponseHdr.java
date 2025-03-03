@@ -12,7 +12,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @NoArgsConstructor
 
 public class ResponseHdr {
-	@ApiModelProperty(notes="CDV API version")
+	@ApiModelProperty(notes="version")
 	private String version;
 	
 	@ApiModelProperty(notes="API service title")

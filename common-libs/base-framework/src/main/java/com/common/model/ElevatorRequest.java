@@ -18,10 +18,8 @@ public class ElevatorRequest {
     public Body body;
 
     public class Body {
-
         @ApiModelProperty(notes = "Number of occupants entering the elevator")
         public ArrayList<Occupant> occupantsEntering = new ArrayList<Occupant>();
-
     }
 
 }
