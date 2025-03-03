@@ -22,8 +22,8 @@
 | [Spunk]()                      | Local running Splunk login                        |
 | [Swagger API]()                | Swagger for API endpoints                         |
 
-## 📝 Simple Setup
-For simple setup, follow these steps:
+## 📝 Basic Setup
+For basic setup, follow these steps:
 
 * Clone the repository.
 * Run **maven install** on the **pom.xml** the root directory of the project. This should first build **common-libs** and then build the **capacity-coordinator-service** and **edge-service**. If everything builds ok you should see:
@@ -31,8 +31,8 @@ For simple setup, follow these steps:
 * Run the spring services **capacity-coordinator-service** and **edge-service**  under **/apps** folder.
 * With the services up you can now use the **http-request_demo.http** file in the base directory to send API commonds to run elevator requests.
 
-## 📝 Exciting Setup
-For exciting setup, you must have Docker installed.
+## 📝 Docker Setup
+For docker setup, you must have Docker installed.
 * Clone the repository.
 * Run the **docker-compose.yaml** in the base directory. This will:
     1. Pull the docker images for the **capacity-coordinator-service** and **edge-service**
