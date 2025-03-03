@@ -10,7 +10,7 @@
 
 ## 🚀 About
 
-**Liftinator** is a fun opportunity to design, build, and test an elevator system. The concept seemed simple at first—just a basic elevator that could move between different floors—but I quickly realized it was an engaging exercise that required deep problem-solving, technical knowledge, and innovation. I would suggest starting with the [design document](), which gives an overview of the design and thought process when building the Lifinator. After cloning the repository, there are two ways to run the project.
+**Liftinator** is a fun opportunity to design, build, and test an elevator system. The concept seemed simple at first—just a basic elevator that could move between different floors—but I quickly realized it was an engaging exercise that required deep problem-solving, technical knowledge, and innovation. I would suggest starting with the [design document](https://github.com/ch39336699/liftinator/blob/main/files/Liftinator_HLD.docx), which gives an overview of the design and thought process when building the Lifinator. After cloning the repository, there are two ways to run the project.
 
 - **Basic Setup**: Basic setup is running install on the base **pom.xml** and then starting the services one at a time. This would get everything up and running fairly quickly.
 - **Docker Setup**: An Docker setup is deploying via Docker. An added bonus of running via a Docker container is that you can view the system via the Splunk dashboard.
@@ -22,11 +22,11 @@
 
 ### Links <a name="links"></a>
 
-| Link                           | Description                                       |
-|--------------------------------|---------------------------------------------------|
-| [High Level Design Document]() | High level design document for Liftinator project |
-| [Spunk]()                      | Local running Splunk login                        |
-| [Swagger API]()                | Swagger for API endpoints                         |
+| Link                                                                                                       | Description                                       |
+|------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
+| [High Level Design Document](https://github.com/ch39336699/liftinator/blob/main/files/Liftinator_HLD.docx) | High level design document for Liftinator project |
+| [Spunk](http://localhost:8000/)                                                                            | Local running Splunk login                        |
+| [Swagger API](http://localhost:8081/swagger-ui/index.html)                                                 | Swagger for API endpoints                         |
 
 ## 📝 Basic Setup
 For basic setup, follow these steps:
@@ -36,6 +36,7 @@ For basic setup, follow these steps:
 <p align="center">
   <img src="./files/mavenbuild.png" alt="Size Limit CLI" width="738">
 </p>
+
 * Run the spring services **capacity-coordinator-service** and **edge-service**  under **/apps** folder.
 * With the services up you can now use the **http-request_demo.http** file in the base directory to send API commonds to run elevator requests.
 
