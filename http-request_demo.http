@@ -1,0 +1,2 @@
+### Get Event1 Observer Count - Get Request to get number of observers for a configured event
+GET http://localhost:8081/scenario/observerCount?eventName=SimpleT1TRK::PartDefinitions::SimpleT1trkSV.[1].someEvent
