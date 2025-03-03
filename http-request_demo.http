@@ -1,20 +1,20 @@
 
 ###
-//Test case:
-//Simulate 8 occupants requesting elevators
-//Floor 0:
-//      David going UP to floor 3
-//      Jane going UP to floor 3
-//      Scott going UP to floor 4
-//Floor 3:
-//      Andy going UP to floor 6
-//Floor 4:
-//      Becky going DOWN to floor 0
-//Floor 7:
-//      Marcus going DOWN to floor 3
-//Floor 8:
-//      Tom going to DOWN floor 6
-####
+# Test case:
+# Simulate 8 occupants requesting elevators
+# Floor 0:
+#       David going UP to floor 3
+#       Jane going UP to floor 3
+#       Scott going UP to floor 4
+# Floor 3:
+#       Andy going UP to floor 6
+# Floor 4:
+#       Becky going DOWN to floor 0
+# Floor 7:
+#       Marcus going DOWN to floor 3
+# Floor 8:
+#       Tom going to DOWN floor 6
+###
 POST http://localhost:8081/elevatorAction
 Content-Type: application/json
 

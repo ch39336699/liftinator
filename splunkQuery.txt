@@ -1,0 +1,4 @@
+ElevatorMsg  | rex field=_raw max_match=0 "id\W+(?<id>\d+)"
+| rex field=_raw max_match=0 "elevator\W+(?<elevator>[^\"]+)" | rex field=_raw max_match=0 "occupant_count\W+(?<occupant_count>[^\"]+)" | rex field=_raw max_match=0 "currentFloor\W+(?<currentFloor>[^\"]+)" | rex field=_raw max_match=0 "msg\W+(?<msg>[^\"]+)"
+| rex field=_raw max_match=0 "occupants_cumulative_weight\W+(?<occupants_cumulative_weight>[^\"]+)" | rex field=_raw max_match=0 "direction\W+(?<direction>[^\"]+)"
+|  fields _time elevator currentFloor occupant_count msg| fields - _bkt, _cd, indextime,_kv,_raw,_serial,_si,_sourcetype,_subsecond,_indextime,_confstr

@@ -8,7 +8,9 @@
 - [Links](#links)
 - [Basic Setup](#-basic-setup)
 - [Docker Setup](#-docker-setup)
+- [Splunk Setup](#-splunk)
 - [Testing](#-test)
+
 
 
 ## 💡 Tech Stack <a name="tech-stack"></a>
@@ -54,8 +56,21 @@ For docker setup, you must have Docker installed.
     2. Pull the docker images for **splunk** and **splunk/universalforwarder**
     3. Start all four containers. <br>
        ⭐ **Note:** Splunk server usually takes a few minutues to come up. Please be patient.
-* Once Splunk server comes and is running in Docker you can [login](http://localhost:8000/). (admin/password)
 
+
+### 📃 Splunk Setup <a name="splunk"></a>
+If you did **docker setup** you should have a splunk sever running and can [login](http://localhost:8000/). (admin/password)
+* As you run the tests (below), you can go to **Splunk**, open the **Search** tab, and in the search field, search for all "*".
+
+<p align="center">
+  <img src="./files/splunkSearch.png" alt="Size Limit CLI" width="738">
+</p>
+
+* For a more visual view of the data, you can also use a dashboard by going to **Dashboards** and then:
+    1. Select **Create New Dashboard** (name it whatever you like), then select **Dashboard Studio** and **Grid**.
+    2. Select **Add Chart** (top bar) and choose **Table**, then in **Create Search** for the query enter the contents from **splunkQuery.txt**.
+
+* If all goes well, you should see a table, and when you run the tests below, you should see something similar to:
 
 <p align="center">
   <img src="./files/splunkTable.png" alt="Size Limit CLI" width="738">
@@ -76,4 +91,3 @@ For each person waiting, we specify:
 
 ```
 
-Once you have the project up and running, either via the **Basic Setup** or the **Docker Setup**, you should then be able to use the **http-request_demo.http** file to run the elevator tests.
