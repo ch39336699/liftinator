@@ -24,7 +24,7 @@
 
 | Link                                                                                                       | Description                                       |
 |------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
-| [High Level Design Document](https://github.com/ch39336699/liftinator/blob/main/files/Liftinator_HLD.docx) | High level design document for Liftinator project |
+| [High Level Design Document](./files/Liftinator_HLD.docx) | High level design document for Liftinator project |
 | [Spunk](http://localhost:8000/)                                                                            | Local running Splunk login                        |
 | [Swagger API](http://localhost:8081/swagger-ui/index.html)                                                 | Swagger for API endpoints                         |
 
