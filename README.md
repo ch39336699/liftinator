@@ -4,8 +4,8 @@
 ### Table of Contents
 - [About](#-about)
 - [Links](#links)
-- [Basic Setup](#-simple-setup)
-- [Docker Setup](#api)
+- [Basic Setup](#-basic-setup)
+- [Docker Setup](#-docker-setup)
 
 ## 🚀 About
 
@@ -39,6 +39,6 @@ For docker setup, you must have Docker installed.
     2. Pull the docker images for **splunk** and **splunk/universalforwarder**
     3. Start all four containers. <br>
        ⭐ **Note:** Splunk server usually takes a few minutues to come up. Please be patient
-* Once Splunk server is up you can [Splunk Login](). (admin/password)
+* Once Splunk server you can goto the [splunk login](). (admin/password)
 * With the services up you can now use the **http-request_demo.http** file in the base directory to send API commonds to run elevator requests.
 
