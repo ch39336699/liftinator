@@ -70,6 +70,7 @@ If you did **docker setup** you should have a splunk sever running and can [logi
     1. Select **Create New Dashboard** (name it whatever you like), then select **Dashboard Studio** and **Grid**.
     2. Select **Add Chart** (top bar) and choose **Table**, then in **Create Search** for the query enter the contents from **splunkQuery.txt**, then **Apply and Close**.
     3. Default rows visible are 10. To increase, select **Data Display** 
+    4. I also set the table **Time Range** to 1 minute to separate the data from different runs.
 
 * If all goes well, you should see a table, and when you run the tests below, you should see something similar to:
 

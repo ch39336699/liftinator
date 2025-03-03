@@ -1,7 +1,93 @@
 
 ###
-# Test case:
-# Simulate 8 occupants requesting elevators
+# Test case: 1
+# 2 occupants requesting elevators starting on different floors.
+# Floor 0:
+#       David going UP to floor 3
+# Floor 7:
+#       Marcus going DOWN to floor 3
+###
+POST http://localhost:8081/elevatorAction
+Content-Type: application/json
+
+{
+  "hdr": {
+  },
+  "body": {
+    "direction": 1,
+    "occupantsEntering":[
+      {
+        "currentFloor": 0,
+        "floorSelected": 3,
+        "name": "David",
+        "weight": 145
+      },
+      {
+        "currentFloor": 7,
+        "floorSelected": 3,
+        "name": "Marcus",
+        "weight": 210
+      }
+    ]
+  }
+}
+
+###
+# Test case: 2
+# 5 occupants requesting elevators all starting on Level 0.
+# Floor 0:
+#       David going UP to floor 3
+#       Marcus going UP to floor 6
+#       Andy going UP to floor 2
+#       Scott going UP to floor 2
+#       Becky going UP to floor 8
+###
+POST http://localhost:8081/elevatorAction
+Content-Type: application/json
+
+{
+  "hdr": {
+  },
+  "body": {
+    "direction": 1,
+    "occupantsEntering":[
+      {
+        "currentFloor": 0,
+        "floorSelected": 3,
+        "name": "David",
+        "weight": 145
+      },
+      {
+        "currentFloor": 0,
+        "floorSelected": 6,
+        "name": "Marcus",
+        "weight": 210
+      },
+      {
+        "currentFloor": 0,
+        "floorSelected": 2,
+        "name": "Andy",
+        "weight": 380
+      },
+      {
+        "currentFloor": 0,
+        "floorSelected": 4,
+        "name": "Scott",
+        "weight": 380
+      },
+      {
+        "currentFloor": 0,
+        "floorSelected": 8,
+        "name": "Becky",
+        "weight": 90
+      }
+    ]
+  }
+}
+
+###
+# Test case: 3
+# 8 occupants requesting elevators starting on different floors.
 # Floor 0:
 #       David going UP to floor 3
 #       Jane going UP to floor 3
@@ -20,7 +106,6 @@ Content-Type: application/json
 
 {
   "hdr": {
-    "empID": "123456"
   },
   "body": {
     "direction": 1,
