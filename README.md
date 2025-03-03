@@ -3,6 +3,7 @@
 
 ### Table of Contents
 - [About](#-about)
+- [Architecture](#diagram)
 - [Links](#links)
 - [Basic Setup](#-basic-setup)
 - [Docker Setup](#-docker-setup)
@@ -13,6 +14,11 @@
 
 - **Basic Setup**: Basic setup is running install on the base **pom.xml** and then starting the services one at a time. This would get everything up and running fairly quickly.
 - **Docker Setup**: An Docker setup is deploying via Docker. An added bonus of running via a Docker container is that you can view the system via the Splunk dashboard.
+
+### Architecture Diagram <a name="diagram"></a>
+<p align="center">
+  <img src="./files/archDiagram.png" alt="Size Limit CLI" width="738">
+</p>
 
 ### Links <a name="links"></a>
 
@@ -27,7 +33,9 @@ For basic setup, follow these steps:
 
 * Clone the repository.
 * Run **maven install** on the **pom.xml** the root directory of the project. This should first build **common-libs** and then build the **capacity-coordinator-service** and **edge-service**. If everything builds ok you should see:
-
+<p align="center">
+  <img src="./files/mavenbuild.png" alt="Size Limit CLI" width="738">
+</p>
 * Run the spring services **capacity-coordinator-service** and **edge-service**  under **/apps** folder.
 * With the services up you can now use the **http-request_demo.http** file in the base directory to send API commonds to run elevator requests.
 
@@ -42,3 +50,6 @@ For docker setup, you must have Docker installed.
 * Once Splunk server you can goto the [splunk login](). (admin/password)
 * With the services up you can now use the **http-request_demo.http** file in the base directory to send API commonds to run elevator requests.
 
+<p align="center">
+  <img src="./files/splunkTable.png" alt="Size Limit CLI" width="738">
+</p>

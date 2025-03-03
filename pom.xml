@@ -177,12 +177,6 @@
             <version>3.12.0</version>
         </dependency>
 
-        <!-- The certified security library we are using for our OAuth 2.0 security -->
-        <dependency>
-            <groupId>com.nimbusds</groupId>
-            <artifactId>oauth2-oidc-sdk</artifactId>
-            <version>9.3.1</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
